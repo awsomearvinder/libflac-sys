@@ -1,6 +1,8 @@
+extern crate pkg_config;
+
 #[cfg(not(feature = "build-flac"))]
 fn main() {
-    println!("cargo:rustc-link-lib=FLAC");
+    pkg_config::probe_library("flac").unwrap();
 }
 
 #[cfg(feature = "build-flac")]
